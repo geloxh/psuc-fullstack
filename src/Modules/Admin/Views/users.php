@@ -62,20 +62,82 @@
                                     <td><?php echo htmlspecialchars($u['email']); ?></td>
                                     <td>
                                         <select class="role-select" data-user-id="<?php echo $u['id']; ?>">
-                                            <option value=""></option>
-                                            <option value=""></option>
-                                            <option value=""></option>
-                                            <option value=""></option>
+                                            <option value="admin" <?php echo $u['role'] == 'admin' ? 'selected' : ''; ?>>Admin</option>
+                                            <option value="moderator" <?php echo $u['role'] == 'moderator' ? 'selected' : ''; ?>>Moderator</option>
+                                            <option value="faculty" <?php echo $u['role'] == 'faculty' ? 'selected' : ''; ?>>Faculty</option>
+                                            <option value="student" <?php echo $u['role'] == 'student' ? 'selected' : ''; ?>>Student</option>
                                         </select>
                                     </td>
-
+                                    <td><?php echo date('M j, Y', strtotime($u['created_at'])); ?></td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm delete-user" data-user-id="<?php echo $u['id']; ?>">\
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
                                 </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
-                </div>
 
+                    <!-- Pagination -->
+                    <?php if($data['total_pages'] > 1): ?>
+                        <div class="pagination">
+                            <?php for($i = 1; $i <= $data['total_pages']; $i++): ?>
+                                <a href="?page=<php echo $i; ?>&search=<?php echo urlencode($search); ?>&role=<?php echo urlencode($role_filter); ?> ">
+                                    class="<?php echo $i == $page ? 'active' : ''; ?>">
+                                    <?php echo $i; ?> 
+                                </a>
+                            <?php endfor; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </main>
+
+    <script>
+        // Handle role updates
+        document.querySelectorAll('.role-select').forEach(select => {
+            select.addEventListener('change', function() {
+                const userId = this.dataset.userId;
+                const role = this.value;
+
+                fetch('', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `ajax=1&action=update_role&user_id=${useId}&role=${role}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        alert('Failed to update role');
+                    }
+                });
+            });
+        });
+
+        // Handle user deletion
+        document.querySelectorAll('.delete-user').forEach(button => {
+            button.addEventListener('click', function() {
+                if (confirm('Are you sure you want to delete this user?')) {
+                    const userId = this.dataset.userId;
+
+                    fetch('', {
+                        method: 'POST',
+                        headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+                        body: `ajax=1&action=delete_user&user_id=${userId}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            this.closest('tr').remove();
+                        } else {
+                            alert('Failed to delete user');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

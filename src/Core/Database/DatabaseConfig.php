@@ -1,8 +1,8 @@
 <?php
 namespace App\Core\Database;
 
-class DatabaseConfig {
-    private static $config = [
+class Databasedb {
+    private static $db = [
         'connections' => [
             'mysql' => [
                 'driver' => 'mysql',
@@ -27,12 +27,12 @@ class DatabaseConfig {
 
     public static function get($key = null) {
         if ($key === null) {
-            return self::$config;
+            return self::$db;
         }
-        return self::$config[$key] ?? null;
+        return self::$db[$key] ?? null;
     }
 
     public static function set($key, $value) {
-        self::$config[$key] = $value;
+        self::$db[$key] = $value;
     }
 }

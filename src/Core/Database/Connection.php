@@ -7,10 +7,10 @@ use PDOException;
 class Connection {
     private static $instance = null;
     private $connection;
-    private $config;
+    private $db;
 
     private function __construct() {
-        $this->config = [
+        $this->db = [
             'host' => $_ENV['DB_HOST'] ?? 'localhost',
             'dbname' => $_ENV['DB_NAME'] ?? 'psuc_db',
             'username' => $_ENV['DB_USER'] ?? 'root',
@@ -35,8 +35,8 @@ class Connection {
 
     private function connect() {
         try {
-            $dsn = "mysql:host={$this->config['host']};dbname={$this->config['dbname']};charset={$this->config['charset']}";
-            $this->connection = new PDO($dsn, $this->config['username'], $this->config['password'], $this->config['options']);
+            $dsn = "mysql:host={$this->db['host']};dbname={$this->db['dbname']};charset={$this->db['charset']}";
+            $this->connection = new PDO($dsn, $this->db['username'], $this->db['password'], $this->db['options']);
         } catch (PDOException $e) {
             throw new \Exception("Database connection failed: " . $e->getMessage());
         }

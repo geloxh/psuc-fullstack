@@ -50,7 +50,7 @@ abstract class BaseController {
 
     protected function requireAdmin() {
         $this->requireAuth();
-        require_once __DIR__ . '/../../../config/database.php';
+        require_once __DIR__ . '/../../../db/database.php';
         require_once __DIR__ . '/../../Modules/Auth/Services/AuthService.php';
     
         $database = new \Database();

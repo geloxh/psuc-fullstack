@@ -36,10 +36,34 @@ class ServiceContainer {
         }
 
         if (is_string($concrete)) {
-            return new $concrete();
+            return $this->resolveClass($concrete);
         }
 
         return $concrete;
+    }
+
+    private function resolveClass($class) {
+        $reflector = new \ReflectionClass($class);
+
+        if (!$reflector->isInstantiable()) {
+            throw new \Exception("Class {$class} is not instantiable");
+        }
+
+        $constructor = $reflector->getConstructor();
+
+        if (is_null($constructor)) {
+            return new $class;
+        }
+
+        $dependencies = [];
+        foreach ($constructor->getParameters() as $parameter) {
+            $type = $parameter->getType();
+            if ($type && !$type->isBuiltin()) {
+                $dependencies[] = $this->resolve($type->getName());
+            }
+        }
+
+        return $reflector->newInstanceArgs($dependencies);
     }
 
     public function get($abstract) {

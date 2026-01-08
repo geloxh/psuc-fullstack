@@ -44,23 +44,41 @@ class Router {
         echo "404 Not Found";
     }
 
-    private function matchPath($routePath, $uri) {
-    // Handle dynamic routes like /forum/{id}
+    private function matchPath($routePath, $uri, &$params = []) {
         $routePattern = preg_replace('/\{[^}]+\}/', '([^/]+)', $routePath);
         $routePattern = '#^' . $routePattern . '$#';
-    
-        return preg_match($routePattern, $uri);
+
+        if (preg_match($routePattern, $uri, $matches)) {
+            $params = array_slice($matches, 1);
+            return true;
+        }
+        return false;       
     }
 
-    private function callHandler($handler) {
+    private function callHandler($handler, $params = []) {
         if (is_string($handler) && strpos($handler, '@') !== false) {
             [$class, $method] = explode('@', $handler);
-            $controller = new $class();
-            return $controller->$method();
-        }
 
-        if (is_callable($handler)) {
-            return $handler();
+            if (!class_exists($class)) {
+                http_response_code(404);
+                echo "Controller not found";
+                return;
+            }
+
+            // Use container to resolve dependencies
+            if ($this->container) {
+                $controller = $this->container->resolve($class);
+            } else {
+                $controller = new $class();
+            }
+
+            if (!method_exists($controller, $method)) {
+                http_response_code(404);
+                echo "Method not found";
+                return;
+            }
+
+            return $controller->$method(...$params);
         }
 
         return $handler;

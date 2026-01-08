@@ -9,7 +9,7 @@ $router->get('/login', 'App\Modules\Auth\Controllers\LoginController@index');
 $router->post('/login', 'App\Modules\Auth\Controllers\LoginController@store');
 $router->get('/register', 'App\Modules\Auth\Controllers\RegisterController@index');
 $router->post('/register', 'App\Modules\Auth\Controllers\RegisterController@store');
-$router->get('/logout', 'App\Modules\Auth\Controllers\LogoutController@index');
+$router->post('/logout', 'App\Modules\Auth\Controllers\LogoutController@index');
 
 // Forum routes
 $router->get('/forum/{id}', 'App\Modules\Forum\Controllers\ForumController@show');

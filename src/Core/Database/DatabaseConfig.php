@@ -1,7 +1,7 @@
 <?php
 namespace App\Core\Database;
 
-class Databasedb {
+class DatabaseConfig {
     private static $db = [
         'connections' => [
             'mysql' => [

@@ -1,6 +1,8 @@
 <?php
 namespace App\Modules\Auth\Services;
 
+use PDO;
+
 class AuthService {
     private $conn;
 

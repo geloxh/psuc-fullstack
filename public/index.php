@@ -10,6 +10,8 @@
     $basePath = '/psuc-fullstack/public';
     if (strpos($uri, $basePath) === 0) {
         $uri = substr($uri, strlen($basePath));
+    } elseif (strpos($uri, '/psuc-fullstack') === 0) {
+        $uri = substr($uri, strlen('/psuc-fullstack'));
     }
 
     if (empty($uri)) {

@@ -7,7 +7,7 @@
             
             <?php foreach($category['forums'] as $forum): ?>
                 <div class="forum-item">
-                    <h3><a href="/forum/<?php echo $forum['id']; ?>"><?php echo htmlspecialchars($forum['name']); ?></a></h3>
+                    <h3><a href="/psuc-fullstack/forum/<?php echo $forum['id']; ?>"><?php echo htmlspecialchars($forum['name']); ?></a></h3>
                     <p><?php echo htmlspecialchars($forum['description'] ?? ''); ?></p>
                 </div>
             <?php endforeach; ?>

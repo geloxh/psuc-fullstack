@@ -12,7 +12,7 @@ class TopicRepository {
 
     public function getTopics($forum_id, $limit = 20, $offset = 0) {
         $query = "SELECT t.*, u.username, u.avatar,
-                (SELECT COUNT(*) FROM posts WHERE topic_id = t.id) as replies_ccount
+                (SELECT COUNT(*) FROM posts WHERE topic_id = t.id) as replies_count
                 FROM topics t
                 JOIN users u ON t.user_id = u.id
                 WHERE forum_id = ?
@@ -22,7 +22,47 @@ class TopicRepository {
         $stmt->bindValue(1, $forum_id, PDO::PARAM_INT);
         $stmt->bindValue(2, (int) $limit, PDO::PARAM_INT);
         $stmt->bindValue(3, (int) $offset, PDO::PARAM_INT);
-        return $stmt->fetchAll(PDO::FECTH_ASSOC);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getRecentTopics($limit = 10) {
+        $query = "SELECT
+                    t.id,
+                    t.title,
+                    t.content,
+                    t.created_at,
+                    t.views,
+                    u.username,
+                    u.avatar,
+                    f.name as forum_name,
+                    (SELECT COUNT(*) FROM posts WHERE topic_id = t.id) as reply_count
+                FROM
+                    topics t
+                JOIN
+                    users u ON t.user_id = u.id
+                JOIN
+                    forums f ON t.forum_id = f.id
+                ORDER BY
+                    t.created_at DESC
+                LIMIT ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindValue(1, (int) $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getTrendingTopics($limit = 5) {
+        $query = "SELECT t.id, t.title, t.views, u.username,
+                (SELECT COUNT(*) FROM posts p WHERE p.topic_id = t.id) as reply_count
+                FROM topics t
+                JOIN users u ON t.user_id = u.id
+                ORDER BY t.views DESC, reply_count DESC
+                LIMIT ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindValue(1, (int) $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getTopicById($topic_id) {

@@ -8,6 +8,10 @@ class AuthService {
     private $maxLoginAttempts = 5;
     private $lockoutTime = 180;
 
+    public function __construct($connection) {
+        $this->conn = $connection;
+    }
+
     public function login($username, $password) {
         if ($this->isAccountLocked($username)) {
             return ['success' => false, 'error' => 'Account temporarily locked'];

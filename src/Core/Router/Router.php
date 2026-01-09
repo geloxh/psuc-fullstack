@@ -17,14 +17,6 @@ class Router {
         $this->addRoute('POST', $path, $handler);
     }
 
-    public function put($path, $handler) {
-        $this->addRoute('PUT', $path, $handler);
-    }
-
-    public function delete($path, $handler) {
-        $this->addRoute('DELETE', $path, $handler);
-    }
-
     private function addRoute($method, $path, $handler) {
         $this->routes[] = [
             'method' => $method,
@@ -35,8 +27,9 @@ class Router {
 
     public function dispatch($method, $uri) {
         foreach ($this->routes as $route) {
-            if ($route['method'] === $method && $this->matchPath($route['path'], $uri)) {
-                return $this->callHandler($route['handler']);
+            $params = [];
+            if ($route['method'] === $method && $this->matchPath($route['path'], $uri, $params)) {
+                return $this->callHandler($route['handler'], $params);
             }
         }
         
@@ -52,7 +45,7 @@ class Router {
             $params = array_slice($matches, 1);
             return true;
         }
-        return false;       
+        return false;
     }
 
     private function callHandler($handler, $params = []) {
@@ -65,7 +58,6 @@ class Router {
                 return;
             }
 
-            // Use container to resolve dependencies
             if ($this->container) {
                 $controller = $this->container->resolve($class);
             } else {

@@ -2,18 +2,22 @@
 namespace App\Modules\User\Controllers;
 
 use App\Web\Controllers\BaseController;
-use App\Shared\Services\NotificationService;
+use App\Modules\User\Services\UserService;
 
 class NotificationController extends BaseController {
-    private $notificationService;
+    private $userService;
     
-    public function __construct(NotificationService $notificationService) {
-        $this->notificationService = $notificationService;
+    public function __construct() {
+        $this->userService = new UserService();
     }
     
     public function index() {
-        $this->requireAuth();
-        $notifications = $this->notificationService->getByUser($_SESSION['user_id']);
-        $this->render('user/notifications', compact('notifications'));
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /login");
+            exit;
+        }
+
+        $notifications = $this->userService->getNotifications($_SESSION['user_id']);
+        return $this->view('user/notifications', ['notifications' => $notifications]);
     }
 }

@@ -163,3 +163,29 @@ INSERT INTO system_settings (setting_key, setting_value, setting_type, descripti
 ('email_verification_required', 'false', 'boolean', 'Require email verification for new users', FALSE),
 ('max_file_upload_size', '10485760', 'integer', 'Maximum file upload size in bytes (10MB)', FALSE),
 ('allowed_file_types', '["jpg","jpeg","png","gif","pdf","doc","docx"]', 'json', 'Allowed file upload types', FALSE);
+
+-- Insert default categories
+INSERT INTO categories (name, description, icon, color, position) VALUES
+('General Discussion', 'General topics for all PSUC members', 'fas fa-comments', '#007bff', 1),
+('Academic', 'Academic discussions and resources', 'fas fa-graduation-cap', '#28a745', 2),
+('Research', 'Research collaboration and sharing', 'fas fa-microscope', '#dc3545', 3),
+('Events & Announcements', 'University events and official announcements', 'fas fa-calendar', '#ffc107', 4),
+('Student Life', 'Campus life, activities, and student concerns', 'fas fa-users', '#17a2b8', 5);
+
+-- Insert default forums
+INSERT INTO forums (category_id, name, description, position) VALUES
+(1, 'Welcome & Introductions', 'Introduce yourself to the PSUC community', 1),
+(1, 'General Chat', 'General discussions about anything', 2),
+(1, 'Help & Support', 'Get help with forum usage and technical issues', 3),
+(2, 'Course Discussions', 'Discuss courses, curriculum, and academic topics', 1),
+(2, 'Study Groups', 'Form and join study groups', 2),
+(2, 'Academic Resources', 'Share textbooks, notes, and study materials', 3),
+(3, 'Research Projects', 'Share and collaborate on research projects', 1),
+(3, 'Publications & Papers', 'Share published papers and research articles', 2),
+(3, 'Research Opportunities', 'Post and find research opportunities', 3),
+(4, 'University Events', 'Upcoming events and activities', 1),
+(4, 'Official Announcements', 'Important announcements from administration', 2),
+(4, 'News & Updates', 'Latest news and updates from PSUC institutions', 3),
+(5, 'Campus Life', 'Discuss campus life and experiences', 1),
+(5, 'Organizations & Clubs', 'Student organizations and club activities', 2),
+(5, 'Career & Opportunities', 'Job opportunities, internships, and career advice', 3);

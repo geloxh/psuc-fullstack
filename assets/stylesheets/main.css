@@ -482,9 +482,9 @@ body {
 .dropdown-sidebar {
     position: fixed;
     left: 0;
-    top: 80px;
+    top: 70px;
     width: min(max(280px, 20vw), 300px);
-    height: calc(100vh - 80px);
+    height: calc(100vh - 70px);
     background: #fafbfc;
     border-right: 1px solid rgba(229, 231, 235, 0.3);
     z-index: 999;

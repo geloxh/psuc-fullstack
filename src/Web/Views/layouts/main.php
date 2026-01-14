@@ -16,10 +16,13 @@
 <body>
    <?php include __DIR__ . '/../components/header.php'; ?>
 
-    <main>
-        <?php echo $content ?? ''; ?>
-    </main>
-    
+   <div class="main-layout">
+        <?php include __DIR__ . '/../components/SideBar.php'; ?>
+        <main>
+            <?php echo $content ?? ''; ?>
+        </main>
+   </div>
+
     <?php include __DIR__ . '/../components/footer.php'; ?>
 
     <script src="/psuc-fullstack/assets/scripts/main.js"></script>

@@ -1,7 +1,7 @@
 <?php
-namespace App\Modules\forum\Services;
+namespace App\Modules\Forum\Services;
 
-use App\Modules\forum\Repositories\ForumRepository;
+use App\Modules\Forum\Repositories\ForumRepository;
 
 class ForumService {
     private $forumRepository;

@@ -134,7 +134,7 @@ try {
     }
 
     function navigateToForum(forumId) {
-        window.location.href = '/psuc-fullstack/forum/' + forumId;
+        window.location.href = '/suc-fullstack/forum/' + forumId;
     }
 
     function toggleMobileSidebar() {

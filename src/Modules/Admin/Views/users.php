@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Manage Users Page for PSUC Admin">
+    <meta name="description" content="Manage Users Page for SUC Forum Admin">
     <link rel="stylesheet" href="assets/stylesheets/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>Manage Users - PSUC Admin</title>
+    <title>Manage Users - SUC Admin</title>
 </head>
 <body>
     <?php include __DIR__ . '/../../includes/header.php'; ?>

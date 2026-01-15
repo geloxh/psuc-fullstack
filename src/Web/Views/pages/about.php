@@ -2,7 +2,7 @@
 
 <div class="paper-container" style="max-width: 900px; margin: 0 auto; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden;">
     <div class="paper-header" style="background: linear-gradient(135deg, #3b82f6, #1e40af); color: white; padding: 3rem 2rem; text-align: center;">
-        <img src="/psuc-fullstack/assets/imgs/suc-logo.jpg" alt="PSUC Logo" style="width: 100px; height: 100px; margin: 0 auto 2rem; display: block; border-radius: 20px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
+        <img src="/suc-fullstack/assets/imgs/suc-logo.jpg" alt="suc Logo" style="width: 100px; height: 100px; margin: 0 auto 2rem; display: block; border-radius: 20px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
         <h1 style="font-size: 2.2rem; font-weight: 700; line-height: 1.3; margin: 0;">Strategic Collaboration and Partnership of State Universities and Colleges in the Philippines</h1>
     </div>
     

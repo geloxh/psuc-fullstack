@@ -1,6 +1,6 @@
--- Enhanced PSUC Forum Database Schema
-CREATE DATABASE IF NOT EXISTS psuc_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE psuc_db;
+-- Enhanced SUC Forum Database Schema
+CREATE DATABASE IF NOT EXISTS suc_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE suc_db;
 
 -- Users table with enhanced fields
 CREATE TABLE users (
@@ -156,7 +156,7 @@ CREATE TABLE activity_logs (
 
 -- Insert default system settings
 INSERT INTO system_settings (setting_key, setting_value, setting_type, description, is_public) VALUES
-('site_name', 'PSUC Forum', 'string', 'Website name', TRUE),
+('site_name', 'SUC Forum', 'string', 'Website name', TRUE),
 ('site_description', 'Philippine State Universities and Colleges Forum', 'string', 'Website description', TRUE),
 ('maintenance_mode', 'false', 'boolean', 'Enable maintenance mode', FALSE),
 ('registration_enabled', 'true', 'boolean', 'Allow new user registration', TRUE),
@@ -166,7 +166,7 @@ INSERT INTO system_settings (setting_key, setting_value, setting_type, descripti
 
 -- Insert default categories
 INSERT INTO categories (name, description, icon, color, position) VALUES
-('General Discussion', 'General topics for all PSUC members', 'fas fa-comments', '#007bff', 1),
+('General Discussion', 'General topics for all SUC members', 'fas fa-comments', '#007bff', 1),
 ('Academic', 'Academic discussions and resources', 'fas fa-graduation-cap', '#28a745', 2),
 ('Research', 'Research collaboration and sharing', 'fas fa-microscope', '#dc3545', 3),
 ('Events & Announcements', 'University events and official announcements', 'fas fa-calendar', '#ffc107', 4),
@@ -174,7 +174,7 @@ INSERT INTO categories (name, description, icon, color, position) VALUES
 
 -- Insert default forums
 INSERT INTO forums (category_id, name, description, position) VALUES
-(1, 'Welcome & Introductions', 'Introduce yourself to the PSUC community', 1),
+(1, 'Welcome & Introductions', 'Introduce yourself to the SUC community', 1),
 (1, 'General Chat', 'General discussions about anything', 2),
 (1, 'Help & Support', 'Get help with forum usage and technical issues', 3),
 (2, 'Course Discussions', 'Discuss courses, curriculum, and academic topics', 1),
@@ -185,7 +185,7 @@ INSERT INTO forums (category_id, name, description, position) VALUES
 (3, 'Research Opportunities', 'Post and find research opportunities', 3),
 (4, 'University Events', 'Upcoming events and activities', 1),
 (4, 'Official Announcements', 'Important announcements from administration', 2),
-(4, 'News & Updates', 'Latest news and updates from PSUC institutions', 3),
+(4, 'News & Updates', 'Latest news and updates from SUC institutions', 3),
 (5, 'Campus Life', 'Discuss campus life and experiences', 1),
 (5, 'Organizations & Clubs', 'Student organizations and club activities', 2),
 (5, 'Career & Opportunities', 'Job opportunities, internships, and career advice', 3);

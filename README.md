@@ -1,10 +1,10 @@
 <div align="center">
 
-# 🎓 PSUC Forum
+# 🎓 SUC Forum
 
 **Philippine State Universities and Colleges Forum**
 
-*A modern, responsive forum platform connecting PSUC communities nationwide*
+*A modern, responsive forum platform connecting suc communities nationwide*
 
 [![PHP](https://img.shields.io/badge/PHP-7.4+-777BB4?style=flat-square&logo=php&logoColor=white)](https://php.net)
 [![MySQL](https://img.shields.io/badge/MySQL-5.7+-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://mysql.com)
@@ -34,7 +34,7 @@
 #### Step 2: Setup Project
 ```bash
 # 1. Copy forum files to XAMPP htdocs
-C:\xampp\htdocs\psuc-forum\
+C:\xampp\htdocs\suc-forum\
 
 # 2. Start XAMPP Control Panel
 # - Start Apache
@@ -44,7 +44,7 @@ C:\xampp\htdocs\psuc-forum\
 #### Step 3: Database Setup
 ```bash
 # 1. Open phpMyAdmin: http://localhost/phpmyadmin
-# 2. Create new database: psuc_forum
+# 2. Create new database: suc_forum
 # 3. Import config/init.sql file
 ```
 
@@ -52,7 +52,7 @@ C:\xampp\htdocs\psuc-forum\
 ```php
 // Edit config/database.php
 $host = 'localhost';
-$db_name = 'psuc_forum';
+$db_name = 'suc_forum';
 $username = 'root';
 $password = ''; // Leave empty for XAMPP default
 ```
@@ -60,12 +60,12 @@ $password = ''; // Leave empty for XAMPP default
 #### Step 5: Launch Forum
 ```bash
 # Open browser and navigate to:
-http://localhost/psuc-forum
+http://localhost/suc-forum
 ```
 
 ### 🎯 First Admin Setup
 1. Register a new account
-2. Open phpMyAdmin → psuc_forum → users table
+2. Open phpMyAdmin → suc_forum → users table
 3. Edit your user record: change `role` from `user` to `admin`
 4. Login and access Admin Panel
 
@@ -142,7 +142,7 @@ http://localhost/psuc-forum
 ## 📁 Project Structure
 
 ```
-📦 PSUC Forum/
+📦 SUC Forum/
 ├── 📂 config/
 │   ├── 🔧 database.php      # Database configuration
 │   └── 🗄️ init.sql          # Database schema & seed data
@@ -213,7 +213,7 @@ http://localhost/psuc-forum
 
 ### 🤝 Contributing
 
-We welcome contributions from the PSUC community! Please follow these guidelines:
+We welcome contributions from the SUC community! Please follow these guidelines:
 
 - 📝 Follow PHP PSR standards
 - 🧪 Test your changes thoroughly

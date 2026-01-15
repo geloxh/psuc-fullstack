@@ -12,7 +12,7 @@ class Connection {
     private function __construct() {
         $this->db = [
             'host' => $_ENV['DB_HOST'] ?? 'localhost',
-            'dbname' => $_ENV['DB_NAME'] ?? 'psuc_db',
+            'dbname' => $_ENV['DB_NAME'] ?? 'suc_db',
             'username' => $_ENV['DB_USER'] ?? 'root',
             'password' => $_ENV['DB_PASS'] ?? '',
             'charset' => 'utf8mb4',

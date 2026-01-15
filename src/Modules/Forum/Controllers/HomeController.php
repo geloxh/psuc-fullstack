@@ -22,7 +22,7 @@ class HomeController extends BaseController {
         $stats = $forumRepository->getForumStats();
 
         $this->render('forum/home', [
-            'title' => 'PSUC Forum - Home',
+            'title' => 'SUC Forum - Home',
             'user' => $user,
             'recentTopics' => $recentTopics,
             'stats' => $stats

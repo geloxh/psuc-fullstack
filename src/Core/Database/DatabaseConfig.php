@@ -8,7 +8,7 @@ class DatabaseConfig {
                 'driver' => 'mysql',
                 'host' => 'localhost',
                 'port' => '3306',
-                'database' => 'psuc_db',
+                'database' => 'suc_db',
                 'username' => 'root',
                 'password' => '',
                 'charset' => 'utf8mb4',

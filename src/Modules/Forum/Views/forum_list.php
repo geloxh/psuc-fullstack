@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PSUC Forum - A community for students, teachers, and staff to discuss and share knowledge.">
+    <meta name="description" content="SUC Forum - A community for students, teachers, and staff to discuss and share knowledge.">
     <link rel="stylesheet" href="assets/stylesheets/main.css">
-    <title>PSUC Forum</title>
+    <title>SUC Forum</title>
 </head>
 <body>
     <div class="forum-container">

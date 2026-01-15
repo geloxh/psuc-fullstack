@@ -18,7 +18,7 @@
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         
             if($stmt -> execute([$username, $email, $hashed_password, $full_name, $university, $role])) {
-                $this -> createNotification($this -> conn -> lastInsertId(), 'welcome', 'Welcome to PSUC Forum!', 'Thank you for joining our community.');
+                $this -> createNotification($this -> conn -> lastInsertId(), 'welcome', 'Welcome to SUC-Industry Collaboration Forum!', 'Thank you for joining our community.');
                 return true;
             }
             return false;

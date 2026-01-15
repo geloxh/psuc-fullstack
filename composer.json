@@ -1,6 +1,6 @@
 {
-    "name": "psuc/forum",
-    "description": "Psuc Forum Web/Application",
+    "name": "suc/forum",
+    "description": "SUC Forum Web/Application",
     "autoload": {
         "psr-4": {
             "App\\": "src/"

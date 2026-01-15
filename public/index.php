@@ -7,11 +7,11 @@
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
     // Remove the base path to get the clean route
-    $basePath = '/psuc-fullstack/public';
+    $basePath = '/suc-fullstack/public';
     if (strpos($uri, $basePath) === 0) {
         $uri = substr($uri, strlen($basePath));
-    } elseif (strpos($uri, '/psuc-fullstack') === 0) {
-        $uri = substr($uri, strlen('/psuc-fullstack'));
+    } elseif (strpos($uri, '/suc-fullstack') === 0) {
+        $uri = substr($uri, strlen('/suc-fullstack'));
     }
 
     if (empty($uri)) {

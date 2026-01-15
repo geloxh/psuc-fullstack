@@ -1,5 +1,5 @@
 ```
-psuc-forum/
+suc-forum/
 ├── src/
 │   ├── Core/                          # Infrastructure & shared services
 │   │   ├── Database/

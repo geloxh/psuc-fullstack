@@ -18,7 +18,7 @@ if($_POST) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - PSUC Forum</title>
+    <title>Login - SUC-Industry Collaboration Forum</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/optima');
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -133,8 +133,8 @@ if($_POST) {
 <body>
     <div class="container">
         <div class="logo">
-            <img src="assets/imgs/suc-logo.jpg" alt="PSUC Logo" class="logo-img">
-            <h1>PSUC Forum</h1>
+            <img src="assets/imgs/suc-logo.jpg" alt="SUC-Industry Collaboration Forum Logo" class="logo-img">
+            <h1>SUC-Industry Collaboration Forum</h1>
             <p class="subtitle">Welcome back! Sign in to continue</p>
         </div>
         

@@ -23,7 +23,7 @@ abstract class BaseController {
         }
 
         $content = ob_get_clean();
-        $title = $data['title'] ?? 'PSUC Forum';
+        $title = $data['title'] ?? 'SUC Forum';
         include __DIR__ . "/../Views/layouts/main.php";
     }
 

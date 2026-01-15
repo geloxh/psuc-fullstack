@@ -1,6 +1,6 @@
 <div class="container">
     <div class="welcome-section">
-        <h1>Welcome to PSUC Forum</h1>
+        <h1>Welcome to SUC Forum</h1>
         <p>Connect with students and faculty from Philippine State Universities and Colleges</p>
         
         <?php if (!$user): ?>

@@ -64,7 +64,7 @@ body {
 }
 
 .logo::after {
-    content: 'PSUC Forum';
+    content: 'SUC Forum';
     color: var(--text-primary);
 }
 

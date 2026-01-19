@@ -1,3 +1,72 @@
+<style>
+    .paper-container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+
+    .paper-header {
+        background: linear-gradient(136deg, var(--primary-blue), var(--secondary-blue));
+        color: white;
+        padding: 3rem 2rem;
+        text-align: center;
+    }
+
+    .header-logo {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 2rem;
+        display: block;
+        border-radius: 20px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .paper-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        line-height: 1.3;
+        margin: 0;
+    }
+
+    .paper-content {
+        padding: 3rem;
+        line-height: 1.8;
+        color: var(--text-primary);
+    }
+
+    .section {
+        margin-bottom: 3rem;
+    }
+
+    .section h2 {
+        color: var(--primary-blue);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0 0 1rem 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--accent-gold);
+    }
+
+    .section h3 {
+        color: var(--secondary-blue);
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 2rem 0 1rem 0;
+    }
+
+    .section p {
+        margin-bottom: 1.5rem;
+        text-align: justify;
+    }
+
+    .highlight {
+        background: linear
+    }
+</style>
+
 <?php include __DIR__ . '/../layouts/main.php'; ?>
 
 <div class="paper-container" style="max-width: 900px; margin: 0 auto; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden;">

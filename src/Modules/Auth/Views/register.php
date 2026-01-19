@@ -186,7 +186,7 @@ $formData = $formData ?? [];
         </form>
         
         <div class="links">
-            <a href="/login">Already have an account?</a> • <a href="/">Back to forum</a>
+            <a href="/login">Already have an account?</a> • <a href="/suc-fullstack/public/">Back to forum</a>
         </div>
     </div>
 </body>

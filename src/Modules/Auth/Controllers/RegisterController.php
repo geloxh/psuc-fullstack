@@ -4,6 +4,7 @@ namespace App\Modules\Auth\Controllers;
 use App\Web\Controllers\BaseController;
 use App\Modules\Auth\Services\AuthService;
 use App\Core\Database\Connection;
+use Exception;
 
 class RegisterController extends BaseController {
     private $authService;
@@ -11,6 +12,10 @@ class RegisterController extends BaseController {
     public function __construct() {
         $database = Connection::getInstance();
         $this->authService = new AuthService($database->getConnection());
+    }
+
+    public function store() {
+        return $this->index(); // Handle POST in index method
     }
 
     public function index() {
@@ -110,12 +115,31 @@ class RegisterController extends BaseController {
             ]
         ];
 
-        $this->render('auth/register', [
-            'title' => 'Register - PSUC Forum',
+        $this->renderWithoutLayout('auth/register', [
+            'title' => 'Register - SUC Forum',
             'error' => $error,
             'success' => $success,
             'formData' => $formData,
             'universities' => $universities
         ]);
+    }
+
+    protected function renderWithoutLayout($view, $data = []) {
+        extract($data);
+
+        if (strpos($view, '/') !== false) {
+            $parts = explode('/', $view, 2);
+            $module = ucfirst($parts[0]);
+            $viewFile = $parts[1];
+            $viewPath = __DIR__ . "/../Views/{$viewFile}.php";
+        } else {
+            $viewPath = __DIR__ . "/../Views/{$view}.php";
+        }
+
+        if (file_exists($viewPath)) {
+            include $viewPath;
+        } else {
+            throw new Exception("View not found: {$view}");
+        }
     }
 }

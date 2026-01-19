@@ -64,10 +64,27 @@ class AuthService {
     }
 
     public function register($username, $email, $password, $full_name, $university, $role) {
-        $query = "INSERT INTO users (username, email, password, full_name, university, role) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($query);
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        return $stmt->execute([$username, $email, $hashed_password, $full_name, $university, $role]);
+        try {
+            if ($this->emailExists($email)) {
+                return ['success' => false, 'message' => 'Email already exists'];
+            }
+
+            $query = "SELECT id FROM users WHERE username = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$username]);
+            if ($stmt->rowCount() > 0) {
+                return ['success' => false, 'message' => 'Username already exists'];
+            }
+
+            $query = "INSERT INTO users (username, email, password, full_name, university, role) VALUES (?, ?, ?, ? ,? , ?)";
+            $stmt = $this->conn->prepare($query);
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $result = $stmt->execute([$username, $email, $hashed_password, $full_name, $university, $role]);
+
+            return ['success' => $result, 'message' => $result ? 'Registration successful' : 'Registration failed'];
+        } catch (Exception $e) {
+            return ['success' => false, 'message' => 'Registration failed: ' . $e-getMessage()];
+        }
     }
 
     public function emailExists($email) {

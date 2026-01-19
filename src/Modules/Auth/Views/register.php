@@ -10,7 +10,7 @@ $formData = $formData ?? [];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - PSUC Forum</title>
+    <title>Register - SUC Forum</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/optima');
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -134,8 +134,8 @@ $formData = $formData ?? [];
 <body>
     <div class="container">
         <div class="logo">
-            <img src="/assets/imgs/suc-logo.jpg" alt="PSUC Logo" class="logo-img">
-            <h1>PSUC Forum</h1>
+            <img src="assets/imgs/suc-logo.jpg" alt="SUC Logo" class="logo-img">
+            <h1>SUC-Industry Collaboration Forum</h1>
             <p class="subtitle">Join the community</p>
         </div>
                 

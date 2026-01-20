@@ -5,6 +5,8 @@ use App\Web\Controllers\BaseController;
 
 class PageController extends BaseController {
     public function about() {
-        return $this->view('web/pages/about');
+        return $this->render('pages/about', [
+            'title' => 'Straight Collaboration - USC Forum'
+        ]);
     }
 }

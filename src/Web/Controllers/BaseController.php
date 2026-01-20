@@ -19,7 +19,7 @@ abstract class BaseController {
         if (file_exists($viewPath)) {
             include $viewPath;
         } else {
-            throw new Exception("View not found: {$view}");
+            throw new \Exception("View not found: {$view}");
         }
 
         $content = ob_get_clean();

@@ -14,7 +14,7 @@ $user = $authService->getCurrentUser();
 <header class="header">
     <div class="container">
         <div class="header-content">
-            <a href="/suc-fullstack/" class="logo">
+            <a href="/suc-fullstack/public/" class="logo">
                 <img src="/suc-fullstack/assets/imgs/suc-logo.jpg" alt="SUC Forum Logo" style="height: 60px;">
             </a>
 

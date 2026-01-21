@@ -12,7 +12,12 @@ class TopicRepository {
 
     public function getTopics($forum_id, $limit = 20, $offset = 0) {
         $query = "SELECT t.*, u.username, u.avatar,
-                (SELECT COUNT(*) FROM posts WHERE topic_id = t.id) as replies_count
+                (SELECT COUNT(*) FROM posts WHERE topic_id = t.id) as replies_count,
+                CONCAT(
+                    (SELECT u2.username FROM posts p2 JOIN users u2 ON p2.user_id = u2.id WHERE p2.topic_id = t.id ORDER BY p2.created_at DESC LIMIT 1),
+                    '|',
+                    (SELECT p2.created_at FROM posts p2 WHERE p2.topic_id = t.id ORDER BY p2.created_at DESC LIMIT 1)
+                ) as last_reply
                 FROM topics t
                 JOIN users u ON t.user_id = u.id
                 WHERE forum_id = ?

@@ -59,9 +59,27 @@ class ForumRepository {
     }
 
     public function getForumInfo($forum_id) {
-        $query = "SELECT name FROM forums WHERE id = ?";
+        $query = "SELECT name, description FROM forums WHERE id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$forum_id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getForumWithCategory($forum_id) {
+        $query = "SELECT f.*, c.name as category_name,
+        (SELECT COUNT(*) FROM posts p JOIN topics t ON p.topic_id = t.id WHERE t.forum_id = f.id) as posts_count
+        FROM forums f
+        JOIN categories c ON f.category_id = c.id
+        WHERE f.id = ?";
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute([$forum_id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getTotalTopics($forum_id) {
+        $query = "SELECT COUNT(*) as total FROM topics WHERE forum_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$forum_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
     }
 }

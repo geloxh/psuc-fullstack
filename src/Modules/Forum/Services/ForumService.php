@@ -14,6 +14,10 @@ class ForumService {
         return $this->forumRepository->getCategories();
     }
 
+    public function getForumById($forum_id) {
+        return $this->forumRepository->getForumInfo($forum_id);
+    }
+
     public function getForumsByCategory($categoryId) {
         return $this->forumRepository->getForumsByCategory($categoryId);
     }

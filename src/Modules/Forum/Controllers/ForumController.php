@@ -32,6 +32,6 @@ class ForumController {
 
         $topics = $this->topicService->getTopics($forum_id, $limit, $offset);
 
-        include __DIR__ . '/../Views/topic-list.php';
+        include __DIR__ . '/../Views/topic_list.php';
     }
 }

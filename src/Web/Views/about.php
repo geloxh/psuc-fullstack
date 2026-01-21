@@ -123,7 +123,7 @@
 
 <div class="paper-container">
     <div class="paper-header">
-        <img src="/sujc-fullstack/assets/imgs/suc-logo.jpg" alt="SUC Logo" class="header-logo">
+        <img src="/suc-fullstack/assets/imgs/suc-logo.jpg" alt="SUC Logo" class="header-logo">
         <h1 class="paper-title">Strategic Collaboration and Partnership of State Universities and Colleges in the Philippines</h1>
     </div>
     <div class="paper-content">

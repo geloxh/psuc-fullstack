@@ -67,13 +67,13 @@ class ForumRepository {
 
     public function getForumWithCategory($forum_id) {
         $query = "SELECT f.*, c.name as category_name,
-        (SELECT COUNT(*) FROM posts p JOIN topics t ON p.topic_id = t.id WHERE t.forum_id = f.id) as posts_count
-        FROM forums f
-        JOIN categories c ON f.category_id = c.id
-        WHERE f.id = ?";
-    $stmt = $this->conn->prepare($query);
-    $stmt->execute([$forum_id]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+                (SELECT COUNT(*) FROM posts p JOIN topics t ON p.topic_id = t.id WHERE t.forum_id = f.id) as posts_count
+                FROM forums f
+                JOIN categories c ON f.category_id = c.id
+                WHERE f.id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$forum_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getTotalTopics($forum_id) {

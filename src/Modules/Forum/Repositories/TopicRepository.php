@@ -81,6 +81,27 @@ class TopicRepository {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getTopicsWithDetails($forum_id, $limit = 20, $offset = 0) {
+        $query = "SELECT t.*, u.username, u.avatar,
+                (SELECT COUNT(*) FROM posts WHERE topic_id = t.id) as replies_count,
+                CONCAT(
+                    COALESCE((SELECT u2.username FROM posts p2 JOIN users u2 ON p2.user_id = u2.id WHERE p2.topic_id = t.id ORDER BY p2.created_at DESC LIMIT 1), ''),
+                    '|',
+                    COALESCE((SELECT p2.created_at FROM posts p2 WHERE p2.topic_id = t.id ORDER BY p2.created_at DESC LIMIT 1), '')
+                ) as last_reply
+                FROM topics t
+                JOIN users u ON t.user_id = u.id
+                WHERE forum_id = ?
+                ORDER BY is_pinned DESC, updated_at DESC
+                LIMIT ? OFFSET ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindValue(1, $forum_id, PDO::PARAM_INT);
+        $stmt->bindValue(2, (int) $limit, PDO::PARAM_INT);
+        $stmt->bindValue(3, (int) $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function create($forum_id, $user_id, $title, $content) {
         $query = "INSERT INTO topics (forum_id, user_id, title, content) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);

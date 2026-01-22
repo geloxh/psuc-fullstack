@@ -22,6 +22,10 @@ class TopicService {
         return $topic;
     }
 
+    public function getTopicsWithDetails($forum_id, $limit = 20, $offset = 0) {
+        return $this->topicRepository->getTopicsWithDetails($forum_id, $limit, $offset);
+    }
+
     public function createTopic($forum_id, $user_id, $title, $content) {
         $title = trim($title);
         $content = trim($content);

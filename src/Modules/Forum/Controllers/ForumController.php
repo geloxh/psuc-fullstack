@@ -20,7 +20,7 @@ class ForumController {
     }
 
     public function show($forum_id) {
-        $forum_info = $this->forumService->getForumById($forum_id);
+        $forum_info = $this->forumService->getForumWithCategory($forum_id);
         if (!$forum_info) {
             header('Location: index.php');
             exit;
@@ -30,7 +30,10 @@ class ForumController {
         $limit = 20;
         $offset = ($page - 1) * $limit;
 
-        $topics = $this->topicService->getTopics($forum_id, $limit, $offset);
+        $topics = $this->topicService->getTopicsWithDetails($forum_id, $limit, $offset);
+        $total_topics = $this->forumService->getTotalTopics($forum_id);
+        $total_pages = ceil($total_topics / $limit);
+        $user = $_SESSION['user'] ?? NULL;
 
         include __DIR__ . '/../Views/topic_list.php';
     }

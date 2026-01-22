@@ -499,7 +499,7 @@
             <!-- Header Section -->
             <header class="forum-header">
                 <nav class="breadcrumb">
-                    <a href="index.php"><i class="fas fa-home"></i> Forum</a>
+                    <a href="/suc-fullstack/public/"><i class="fas fa-home"></i> Forum</a>
                     <i class="fas fa-chevron-right"></i>
                     <span><?php echo htmlspecialchars($forum_info['category_name']); ?></span>
                     <i class="fas fa-chevron-right"></i>

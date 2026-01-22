@@ -21,4 +21,12 @@ class ForumService {
     public function getForumsByCategory($categoryId) {
         return $this->forumRepository->getForumsByCategory($categoryId);
     }
+
+    public function getForumWithCategory($forum_id) {
+        return $this->forumRepository->getForumWithCategory($forum_id);
+    }
+
+    public function getTotalTopics($forum_id) {
+        return $this->forumRepository->getTotalTopics($forum_id);
+    }
 }

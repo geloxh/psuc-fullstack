@@ -53,6 +53,15 @@ body {
     gap: 1rem;
 }
 
+.fa-chevron-down {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-toggle:hover .fa-chevron-down,
+.dropdown-toggle.active .fa-chevron-down {
+    transition: rotate(180deg);
+}
+
 .logo {
     display: flex;
     align-items: center;

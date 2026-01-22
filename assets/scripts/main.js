@@ -42,3 +42,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+//
+
+document.querySelectorAll('.dropdown-toggle').forEach(dropdown => {
+    dropdown.addEventListener('mouseenter', () => {
+        dropdown.classList.add('active');
+    });
+
+    dropdown.addEventListener('mouseleave', () => {
+        dropdown.classList.remove('active');
+    });
+});

@@ -135,9 +135,9 @@
         <div class="footer-section">
             <h4>Quick Links</h4>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/search">Search</a></li>
+                <li><a href="/suc-fullstack/public/">Home</a></li>
+                <li><a href="/suc-fullstack/about">About</a></li>
+                <li><a href="/suc-fullstack/search">Search</a></li>
                 <li><a href="/documents">Resources</a></li>
             </ul>
         </div>

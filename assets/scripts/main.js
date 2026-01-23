@@ -5,24 +5,24 @@ document.addEventListener('DOMContentLoaded', function() {
     dropdownToggles.forEach(toggle => {
         const toggleLink = toggle.querySelector('a');
         
-        toggleLink.addEventListener('click', function(event) {
-            if (this.getAttribute('href') === '#') {
-                event.preventDefault();
-                event.stopPropagation();
+        if (toggleLink) {
+            toggleLink.addEventListener('click', function(event) {
+                if (this.getAttribute('href') === '#') {
+                    event.preventDefault();
+                    event.stopPropagation();
 
-                const parentToggle = this.parentElement;
+                    const parentToggle = this.parentElement;
 
-                // Close other open dropdowns
-                document.querySelectorAll('.dropdown-toggle').forEach(otherToggle => {
-                    if (otherToggle !== parentToggle) {
-                        otherToggle.classList.remove('active');
-                    }
-                });
+                    document.querySelectorAll('.dropdown-toggle').forEach(otherToggle => {
+                        if (otherToggle !== parentToggle) {
+                            otherToggle.classList.remove('active');
+                        }
+                    });
 
-                // Toggle current dropdown
-                parentToggle.classList.toggle('active');
-            }
-        });
+                    parentToggle.classList.toggle('active');
+                }
+            });
+        }
     });
 
     // Close dropdown when clicking outside
@@ -42,8 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-//
 
 document.querySelectorAll('.dropdown-toggle').forEach(dropdown => {
     dropdown.addEventListener('mouseenter', () => {

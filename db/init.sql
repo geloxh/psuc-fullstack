@@ -165,6 +165,46 @@ CREATE TABLE events (
     INDEX idx_event_date (event_date)
 );
 
+CREATE TABLE documents (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    file_path VARCHAR(500) NOT NULL,
+    file_size INT DEFAULT 0,
+    FILE_TYPE VARCHAR(50),
+    status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
+    downloads INT DEFAULT 0,
+    uploaded_by INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (uploaded_by) REFERENCES users(id) ON DELETE SET NULL,
+    INDEX idx_status (status),
+    INDEX idx_created (created_at)
+);
+
+CREATE TABLE research_collaborations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    research_area VARCHAR(100),
+    requirements TEXT,
+    status ENUM('open', 'in_progress', 'completed', 'closed') DEFAULT 'open',
+    created_by INT,
+    participants_needed INT DEFAULT 1,
+    current_paticipants INT DEFAULT 0,
+    dealine DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_status (status),
+    INDEX idx_research_area (research_area),
+    INDEX idx_created (created_at)
+);
+
+-- Sample User / password: yourpasswordhere
+INSERT INTO users (username, email, password, full_name, university, role) VALUES
+('developer', 'it@3ehitech.com', '$2y$10$q1AKe5CMiOLte31M.JspAuO4AAdc5vfG9lxqWoJdwqxhk/dJJ7BOG', 'Angelo Dev IT', 'Infotech Development Systems Colleges', 'admin');
+
 -- Insert default system settings
 INSERT INTO system_settings (setting_key, setting_value, setting_type, description, is_public) VALUES
 ('site_name', 'SUC Forum', 'string', 'Website name', TRUE),
@@ -204,3 +244,7 @@ INSERT INTO forums (category_id, name, description, position) VALUES
 -- Insert sample Events
 INSERT INTO events (title, description, event_date, location) VALUES
 ('SUC-Industry Collaboration Forum', 'Collaboration forum site', '2026-01-26 11:00:00', 'H.V. Dela Costa Makati City, The World Center Building, 25th Floor');
+
+-- Insert sample data
+INSERT INTO research_collaborations (title, description, research_area, requirements, created_by, participants_needed, deadline) VALUES
+('Sample Data', 'Sample Data', 'Sample Data', 'Sample Data', 1, 3, '2024-06-30');

@@ -37,8 +37,16 @@ $container->bind(\App\Modules\Events\Repositories\EventRepository::class, functi
     return new \App\Modules\Events\Repositories\EventRepository($container->get('database')->getConnection());
 });
 
-$container->bind(\App\Modules\Events\Services\calendarservice::class, function($container) {
+$container->bind(\App\Modules\Events\Services\CalendarService::class, function($container) {
     return new \App\Modules\Events\Services\CalendarService($container->resolve(\App\Modules\Events\Repositories\EventRepository::class));
+});
+
+$container->bind(\App\Modules\Documents\Repositories\DocumentRepository::class, function($container) {
+    return new \App\Modules\Documents\Repositories\DocumentRepository($container->get('database')->getConnection());
+});
+
+$container->bind(\App\Modules\Documents\Services\DocumentService::class, function($container) {
+    return new \App\Modules\Documents\Services\DocumentService($container->resolve(\App\Modules\Documents\Repositories\DocumentRepository::class));
 });
 
 $container->bind(UserService::class, function($container) {

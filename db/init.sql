@@ -201,6 +201,41 @@ CREATE TABLE research_collaborations (
     INDEX idx_created (created_at)
 );
 
+CREATE TABLE job_board (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    company VARCHAR(255) NOT NULL,
+    description TEXT,
+    requirements TEXT,
+    location VARCHAR(255),
+    job_type ENUM('full-time', 'part-time', 'internship', 'contract') DEFAULT 'full-time',
+    salary_range VARCHAR(100),
+    status ENUM('active', 'closed', 'draft') DEFAULT 'active',
+    posted_by INT,
+    application_deadline DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (posted_by) REFERENCES users(id) ON DELETE SET NULL,
+    INDEX idx_status (status),
+    INDEX idx_job_type (job_type),
+    INDEX idx_created (created_at)
+);
+
+CREATE TABLE user_groups (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    type ENUM('academic', 'social', 'professional', 'other') DEFAULT 'other',
+    status ENUM('active', 'inactive') DEFAULT 'active',
+    created_by INT,
+    member_count INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL,
+    INDEX ikdx_status (status),
+    INDEX idx_type (type)
+);
+
 -- Sample User / password: yourpasswordhere
 INSERT INTO users (username, email, password, full_name, university, role) VALUES
 ('developer', 'it@3ehitech.com', '$2y$10$q1AKe5CMiOLte31M.JspAuO4AAdc5vfG9lxqWoJdwqxhk/dJJ7BOG', 'Angelo Dev IT', 'Infotech Development Systems Colleges', 'admin');

@@ -49,6 +49,22 @@ $container->bind(\App\Modules\Documents\Services\DocumentService::class, functio
     return new \App\Modules\Documents\Services\DocumentService($container->resolve(\App\Modules\Documents\Repositories\DocumentRepository::class));
 });
 
+$container->bind(\App\Modules\Jobs\Repositories\JobRepository::class, function($container) {
+    return new \App\Modules\Jobs\Repositories\JobRepository($container->get('database')->getConnection());
+});
+
+$container->bind(\App\Modules\Jobs\Services\JobService::class, function($container) {
+    return new \App\Modules\Jobs\Services\JobService($container->resolve(\App\Modules\Jobs\Repositories\JobRepository::class));
+});
+
+$container->bind(\App\Modules\User\Repositories\GroupRepository::class, function($container) {
+    return new \App\Modules\User\Repositories\GroupRepository($container->get('database')->getConnection());
+});
+
+$container->bind(\App\Modules\User\Services\GroupService::class, function($container) {
+    return new \App\Modules\User\Services\GroupService($container->resolve(\App\Modules\User\Repositories\GroupRepository::class));
+});
+
 $container->bind(UserService::class, function($container) {
     return new UserService($container->get('database')->getConnection());
 });

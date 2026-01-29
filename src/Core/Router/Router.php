@@ -26,6 +26,11 @@ class Router {
     }
 
     public function dispatch($method, $uri) {
+        $uri = rtrim($uri, '/');
+        if (empty($uri)) {
+            $uri = '/';
+        }
+        
         foreach ($this->routes as $route) {
             $params = [];
             if ($route['method'] === $method && $this->matchPath($route['path'], $uri, $params)) {

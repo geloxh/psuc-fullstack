@@ -2,17 +2,24 @@
 namespace App\Modules\Messaging\Controllers;
 
 use App\Modules\Messaging\Services\MessageService;
+use App\Web\Controllers\BaseController;
+use App\Core\Database\Connection;
 
-class MessageController {
+class MessageController extends BaseController {
     private $messageService;
 
-    public function __construct(NessageService $messageService) {
-        $this->messageService = $messageService;
+    public function __construct() {
+        $database  = Connection::getInstance();
+        $this->messageService = new MessageService($database->getConnection());
     }
 
     public function index() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         if (!isset($_SESSION['user_id'])) {
-            header('Location: login.php');
+            $this->redirect('/suc-fullstack/login');
             exit;
         }
 
@@ -21,22 +28,22 @@ class MessageController {
         $success = '';
 
         // Handle delete message
-        if (!isset($_POST['delete_message'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_message'])) {
             try {
                 $result = $this->messageService->deleteMessage($_POST['message_id'], $user_id);
 
                 if ($result) {
-                    $success = "Message deleted successfully.";
-                    header('Location: messages.php?view=' . ($_GET['view'] ?? 'inbox') . '&deleted=1');
+                    $success = "Messsage deleted successfully.";
+                    $this->redirect('/suc-fullstack/messages?view=' . ($_GET['view'] ?? 'inbox') . '&deleted=1');
                     exit;
                 }
             } catch (\Exception $e) {
-                $error = "Failed to deleted message.";
+                $error = "Failed to delete message.";
             }
         }
 
         // Handle sending message
-        if ($_POST && isset($_POST['send_message'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_message'])) {
             try {
                 $result = $this->messageService->sendMessage(
                     $user_id,
@@ -46,7 +53,7 @@ class MessageController {
                 );
 
                 if ($result) {
-                    header('Location: messages.php?view=' . ($_GET['view'] ?? 'inbox') . '&success=1');
+                    $this->redirect('/suc-fullstack/messages?view=' . ($_GET['view'] ?? 'inbox') . '&success=1');
                     exit;
                 }
             } catch (\Exception $e) {
@@ -72,6 +79,15 @@ class MessageController {
         // Get unread count
         $unread_count = $this->messageService->getUnreadCount($user_id);
 
-        include __DIR__ . '/../Views/messages.php';
+        $this->render('messaging/messages', [
+            'title' => 'Messages',
+            'messages' => $messages,
+            'message_detail' => $message_detail,
+            'users' => $users,
+            'unread_count' => $unread_count,
+            'error' => $error,
+            'success' => $success,
+            'view' => $view,
+        ]);
     }
 }

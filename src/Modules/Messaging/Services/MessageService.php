@@ -23,7 +23,7 @@ class MessageService {
         // Mark as read if it's received by current user
         if ($message && $message['receiver_id'] == $user_id && !$message['is_read']) {
             $this->messageRepository->markAsRead($message_id, $user_id);
-            $message['is_read'];
+            $message['is_read'] = 1;
         }
         
         return $message;

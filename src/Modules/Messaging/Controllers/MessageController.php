@@ -3,14 +3,12 @@ namespace App\Modules\Messaging\Controllers;
 
 use App\Modules\Messaging\Services\MessageService;
 use App\Web\Controllers\BaseController;
-use App\Core\Database\Connection;
 
 class MessageController extends BaseController {
     private $messageService;
 
-    public function __construct() {
-        $database  = Connection::getInstance();
-        $this->messageService = new MessageService($database->getConnection());
+    public function __construct(MessageService $messageService) {
+        $this->messageService = $messageService;
     }
 
     public function index() {

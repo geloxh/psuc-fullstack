@@ -77,6 +77,14 @@ $container->bind(\App\Shared\Services\SearchService::class, function($container)
     return new \App\Shared\Services\SearchService($container->get('database')->getConnection());
 });
 
+$container->bind(\App\Modules\Messaging\Repositories\MessageRepository::class, function($container) {
+    return new \App\Modules\Messaging\Repositories\MessageRepository($container->get('database')->getConnection());
+});
+
+$container->bind(\App\Modules\Messaging\Services\MessageService::class, function($container) {
+    return new \App\Modules\Messaging\Services\MessageService($container->resolve(\App\Modules\Messaging\Repositories\MessageRepository::class));
+});
+
 $router = new Router($container);
 
 // Register routes

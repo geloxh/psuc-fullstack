@@ -205,10 +205,10 @@
                     <h3>Quick Actions</h3>
                 </div>
                 <div class="quick-actions">
-                    <a href="/new-topic" class="action-item"><i class="fas fa-plus"></i><span>New Topic</span></a>
+                    <a href="/suc-fullstack/new-topic" class="action-item"><i class="fas fa-plus"></i><span>New Topic</span></a>
                     <a href="/suc-fullstack/search" class="action-item"><i class="fas fa-search"></i><span>Search</span></a>
-                    <a href="/messages" class="action-item"><i class="fas fa-envelope"></i><span>Messages</span></a>
-                    <a href="/profile" class="action-item"><i class="fas fa-user"></i><span>Profile</span></a>
+                    <a href="/suc-fullstack/messages" class="action-item"><i class="fas fa-envelope"></i><span>Messages</span></a>
+                    <a href="/suc-fulsltack/profile" class="action-item"><i class="fas fa-user"></i><span>Profile</span></a>
                 </div>
             </div>
 

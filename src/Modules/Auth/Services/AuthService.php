@@ -44,7 +44,7 @@ class AuthService {
     }
 
     private function isAccountLocked($username) {
-        $query = "SELECT COUNT(*) as attempts FROM login_attempts WHERE username = ? AND attempt_time > ?";
+        $query = "SELECT COUNT(*) as attempts FROM login_attempts WHERE username = ? AND attempted_at > ?";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$username, time() - $this->lockoutTime]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -52,7 +52,7 @@ class AuthService {
     }
 
     private function recordFailedAttempt($username) {
-        $query = "INSERT INTO login_attempts (username, attempt_time) VALUES (?, ?)";
+        $query = "INSERT INTO login_attempts (username, attempted_at) VALUES (?, ?)";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$username, time()]);
     }

@@ -10,7 +10,7 @@ class MessageRepository {
         $this->conn = $connection;
     }
 
-    public function getInboxMessage($user_id) {
+    public function getInboxMessages($user_id) {
         $query = "SELECT m.*, u.username as other_user
                 FROM messages m
                 JOIN users u ON m.sender_id = u.id
@@ -21,7 +21,7 @@ class MessageRepository {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getSentMessage($user_id) {
+    public function getSentMessages($user_id) {
         $query = "SELECT m.*, u.username as other_user
                 FROM messages m
                 JOIN users u ON m.receiver_id = u.id
@@ -46,7 +46,7 @@ class MessageRepository {
     }
 
     public function sendMessage($sender_id, $receiver_id, $subject, $content) {
-        $query = "INSERT INTO messages (sender_id, receiver_id, subject, ceontent) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO messages (sender_id, receiver_id, subject, content) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         return $stmt->execute([$sender_id, $receiver_id, $subject, $content]);
     }
@@ -64,7 +64,7 @@ class MessageRepository {
     }
 
     public function getUnreadCount($user_id) {
-        $query = "SELECT COUNT(*) as count FROM messages WHERE recever_id = ? AND is_read = 0";
+        $query = "SELECT COUNT(*) as count FROM messages WHERE receiver_id = ? AND is_read = 0";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$user_id]);
         return $stmt->fetch(PDO::FETCH_ASSOC)['count'];

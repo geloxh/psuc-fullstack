@@ -26,6 +26,15 @@ class Router {
     }
 
     public function dispatch($method, $uri) {
+        if (false !== $pos = strpos($uri, '?')) {
+            $uri = substr($uri, 0, $pos);
+        }
+
+        $scriptDir = str_replace('\\','/', dirname($_SERVER['SCRIPT_NAME']));
+        if ($scriptDir !== '/' && strpos($uri, $scriptDir) === 0) {
+            $uri = substr($uri, strlen($scriptDir));
+        }
+        
         $uri = rtrim($uri, '/');
         if (empty($uri)) {
             $uri = '/';

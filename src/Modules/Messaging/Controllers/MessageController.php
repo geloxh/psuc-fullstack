@@ -33,7 +33,8 @@ class MessageController extends BaseController {
                 $result = $this->messageService->deleteMessage($_POST['message_id'], $user_id);
 
                 if ($result) {
-                    $success = "Messsage deleted successfully.";
+                    $success = "Message deleted successfully.";
+                    $success = "Message deleted successfully.";
                     $this->redirect('/suc-fullstack/messages?view=' . ($_GET['view'] ?? 'inbox') . '&deleted=1');
                     exit;
                 }

@@ -191,7 +191,7 @@ $formData = $formData ?? [];
             <div class="success"><?php echo htmlspecialchars($success); ?></div>
         <?php endif; ?>
                 
-        <form method="POST" action="/register">
+        <form method="POST" action="/suc-fullstack/register">
             <div class="form-group">
                 <input type="text" name="full_name" placeholder="Full Name" required value="<?php echo htmlspecialchars($formData['full_name'] ?? ''); ?>">
             </div>

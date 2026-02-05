@@ -1,7 +1,3 @@
-<?php
-$user = $_SESSION['user'] ?? null;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,7 +125,7 @@ $user = $_SESSION['user'] ?? null;
                         <h3>No topics yet</h3>
                         <p>This forum is waiting for its first discussion.</p>
                         <?php if($user): ?>
-                            <a href="/suc-fullstack/new_topic.php?forum_id=<?php echo $forum_info['id']; ?>" class="new-topic-button">
+                            <a href="/suc-fullstack/new-topic?forum_id=<?php echo $forum_info['id']; ?>" class="new-topic-button">
                                 <i class="fas fa-plus"></i> Create First Topic
                             </a>
                         <?php else: ?>

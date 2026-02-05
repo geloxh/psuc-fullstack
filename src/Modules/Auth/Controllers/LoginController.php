@@ -20,6 +20,7 @@ class LoginController extends BaseController {
         
         $error = '';
 
+        // Login 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $this->authService->login($_POST['username'], $_POST['password']);
             if ($result['success']) {

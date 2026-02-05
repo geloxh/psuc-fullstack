@@ -33,7 +33,7 @@ class ForumController {
         $topics = $this->topicService->getTopicsWithDetails($forum_id, $limit, $offset);
         $total_topics = $this->forumService->getTotalTopics($forum_id);
         $total_pages = ceil($total_topics / $limit);
-        $user = $_SESSION['user'] ?? NULL;
+        $user = isset($_SESSION['user_id']) ? $_SESSION : null;
 
         include __DIR__ . '/../Views/topic_list.php';
     }
